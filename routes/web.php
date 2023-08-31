@@ -70,27 +70,7 @@ Route::get('/uploads/{filename}', function ($filename) {
 
 
 Route::get('/test' , function(){
-    $now = Carbon::now()->format("Y-m-d");
-    $contrat_user = Contrats::whereDate("date_fin" , $now)->get();
-    $users = User::all();
-
-
-    $notification_ws = array();
-
-    foreach($contrat_user as $c){
-        foreach($users as $user){
-            if($user->id == $c->id_user){
-                $notification = new Notification();
-
-                $notification->id_user = $user->id;
-                $notification->id_contrat = $c->id;
-
-                $notification->description = "Contrat de " .$c->client->fullname." expiré le ".$c->date_fin;
-                $notification->save();
-                array_push($notification_ws , $notification);
-            }
-        }
-    }
-
+    $user = User::with("groups")->find(5);
+    dd($user);
 });
 require __DIR__.'/auth.php';

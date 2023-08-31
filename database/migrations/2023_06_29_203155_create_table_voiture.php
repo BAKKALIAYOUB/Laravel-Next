@@ -15,7 +15,7 @@ class CreateTableVoiture extends Migration
     {
         Schema::create('voitures', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('client_id');
+            $table->unsignedBigInteger('client_id');
             $table->string('marque');
             $table->string("immatriculation");
             $table->integer('number_passengers');
