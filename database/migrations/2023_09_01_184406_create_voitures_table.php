@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableVoiture extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,16 @@ class CreateTableVoiture extends Migration
     public function up()
     {
         Schema::create('voitures', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('client_id');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('client_id')->index('voitures_client_id_foreign');
             $table->string('marque');
-            $table->string("immatriculation");
+            $table->string('immatriculation');
             $table->integer('number_passengers');
             $table->string('color');
             $table->timestamps();
-
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->string('file');
+            $table->string('bodyType');
+            $table->integer('kilometrage')->default(0);
         });
     }
 
@@ -35,4 +36,4 @@ class CreateTableVoiture extends Migration
     {
         Schema::dropIfExists('voitures');
     }
-}
+};

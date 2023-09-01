@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotificationTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,13 @@ class CreateNotificationTable extends Migration
     public function up()
     {
         Schema::create('notification', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_contrat');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_contrat')->index('notification_id_contrat_foreign');
             $table->string('description');
             $table->softDeletes();
             $table->timestamps();
-
-            //foreign key
-            $table->foreign('id_contrat')->references('id')->on('contrats');
+            $table->unsignedBigInteger('id_user')->index('notification_id_user_foreign');
+            $table->boolean('isOpen');
         });
     }
 
@@ -34,4 +33,4 @@ class CreateNotificationTable extends Migration
     {
         Schema::dropIfExists('notification');
     }
-}
+};

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ClientTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class ClientTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('fullname');
             $table->string('cin');
             $table->string('phone');
@@ -33,4 +33,4 @@ class ClientTable extends Migration
     {
         Schema::dropIfExists('clients');
     }
-}
+};

@@ -177,10 +177,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        \Junges\ACL\Providers\ACLServiceProvider::class,
-        \Junges\ACL\Providers\ACLAuthServiceProvider::class,
-        \Junges\ACL\Providers\ACLEventsServiceProvider::class,
-
     ],
 
     /*
