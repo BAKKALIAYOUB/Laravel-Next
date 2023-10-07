@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
                 }
             }
 
-            event (new NotificationContrat($notification_ws));
+            event (new NotificationContrat());
         })->everyMinute();
     }
 

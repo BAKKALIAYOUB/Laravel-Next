@@ -47,9 +47,11 @@ Route::get('/api/contrats' , [ContratController::class , 'index']);
 Route::post("/api/contrat/add" , [ContratController::class , "create"]);
 Route::post("/api/contrat/cars" , [ContratController::class , "getVoituresDispo"]);
 Route::delete('/api/contrat/delete/{id}' , [ContratController::class , 'delete']);
+Route::get('/api/contrats/getNombre' , [ContratController::class , 'getNombreContrats']);
 
 //notification routes
 Route::get('/api/notification' , [NotificationController::class , 'index']);
+Route::get('/api/notification/notOpen/{user_id}' , [NotificationController::class ,"getNotificationNotopen"]);
 
 
 //role routes
@@ -69,8 +71,5 @@ Route::get('/uploads/{filename}', function ($filename) {
 
 
 
-Route::get('/test' , function(){
-    $user = User::with("groups")->find(5);
-    dd($user);
-});
+
 require __DIR__.'/auth.php';

@@ -14,6 +14,12 @@ class ClientsController extends Controller
     }
 
     public function create(Request $request){
+
+        $request->validate([
+            'phone' => "numeric",
+            'cin' => 'regex:/^[A-Z]{1,2}\d+$/',
+        ]);
+
         $client = new Clients();
 
         $client->fullname = $request->input('fullname');

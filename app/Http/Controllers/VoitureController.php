@@ -7,13 +7,23 @@ use Illuminate\Http\Request;
 
 class VoitureController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $voitures = Voiture::all();
 
         return $voitures;
     }
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
+
+        $request->validate([
+            'passagers' => 'numeric',
+            'kilometrage' => 'numeric',
+            'immatriculation' => 'regex:/^\d+\/[A-Za-z]\/\d+$/',
+            'file' => 'mimes:png,jpg'
+        ]);
+
         $voiture = new Voiture();
 
         $voiture->marque = $request->input("marque");
@@ -30,25 +40,26 @@ class VoitureController extends Controller
         $voiture->file = $name;
 
         $voiture->save();
-
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $voiture = Voiture::find($id);
 
         $voiture->delete();
 
         return response()->json();
-
     }
 
-    public function getVoiture($id){
+    public function getVoiture($id)
+    {
         $voiture = Voiture::find($id);
 
         return $voiture;
     }
 
-    public function edit(Request $request , $id){
+    public function edit(Request $request, $id)
+    {
         $voiture = Voiture::find($id);
 
         $voiture->marque = $request->input('marque');

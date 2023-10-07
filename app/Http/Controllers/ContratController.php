@@ -64,4 +64,15 @@ class ContratController extends Controller
 
 
     }
+
+    public function getNombreContrats(){
+        
+        $result = DB::table('contrats')
+                ->select(DB::raw('DATE(created_at) as date_contrat'), DB::raw('COUNT(id) as nombre_de_contrats'))
+                ->groupBy(DB::raw('DATE(created_at)'))
+                ->orderBy(DB::raw('DATE(created_at)'))
+                ->get();
+
+        return $result;
+    }
 }

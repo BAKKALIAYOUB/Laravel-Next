@@ -14,5 +14,6 @@ class Notification extends Model
     protected $table = "notification";
     protected $fillable = [
         "description",
+        "isOpen"
     ];
 }
