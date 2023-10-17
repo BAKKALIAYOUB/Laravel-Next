@@ -62,5 +62,5 @@ jobs:
         with:
           app-name: 'Laravelbakkali'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_01774CE649484731BDC4052352021E81 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_22AA3E0136CD431B8605AF017B50D9A6 }}
           package: .
